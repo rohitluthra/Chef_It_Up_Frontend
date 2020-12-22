@@ -1,0 +1,86 @@
+
+<!--<mat-form-field class="w-full p-4">-->
+<!--  <input matInput type="text" placeholder="Search for specific food" >-->
+<!--</mat-form-field>-->
+
+<!--<mat-dialog-content class="mat-typography">-->
+<!--  <div class="flex flex-wrap flex-row m-4">-->
+<!--  <div *ngFor="let utensil of allUtensils">-->
+<!--    <button (click)="selectedUten(utensil)" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 text-black font-bold capitalize text-lg">-->
+<!--      {{utensil.name}}-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  </div>-->
+<!--</mat-dialog-content>-->
+<!--<mat-dialog-actions align="center">-->
+<!--  <button mat-raised-button color="primary" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateNumbers()">Finish-->
+<!--    <span class="bg-white px-1 rounded text-blue-600 text-xs ml-2">{{selectedNumber}}</span>-->
+<!--  </button>-->
+<!--</mat-dialog-actions>-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+
+  <title>Document</title>
+</head>
+<body>
+
+<h1 class="text-4xl text-center font-bold">Utensils</h1>
+<h2 class="text-xs text-center">Select the utensils of your original recipe.</h2>
+<hr class="border-t-2 border-black m-2">
+
+<div class="flex flex-row justify-center items-center">
+
+  <mat-dialog-content class="flex mat-typography w-full " *ngIf="!hideseconddiv">
+    <mat-form-field class="w-full p-4">
+      <input matInput type="text" placeholder="Search for specific food">
+
+    </mat-form-field>
+    <div class="flex flex-wrap flex-row m-2">
+      <div *ngFor="let utensil of allUtensils"  class=" ">
+        <button  (click)="selectedUten(utensil)" class="text-gray-700 transition-all transition-ease-out hover:bg-orange-500 text-center bg-gray-400 px-4 py-2 m-2 text-black font-bold capitalize text-lg">
+          {{utensil.name}}
+        </button>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+
+  <div  id="itemlist" *ngIf="hideseconddiv" class="flex flex-col w-full items-center justify-center overflow-y-auto content-center p-2 m-2  border-2 border-black ">
+    <h1 class="text-2xl font-bold">Selected Items: </h1>
+    <div [attr.id]="'ingredient'+ i" *ngFor="let utensil of utensilsSelected let i=index" class=" flex flex-row m-2 justify-between items-end hover:cursor-pointer transition-all transition-ease-out animated fadeIn">
+      <mat-form-field class="w-3/5 mr-2 h-10" >
+        <input [readonly]="true"  type ="text"  matInput placeholder="Utensil Name" value="{{utensil.name}}" >
+      </mat-form-field>
+      <mat-icon (click)="deleteSpecificUtensils(i)" class="hover:bg-red-500 rounded-lg cursor-pointer" >delete</mat-icon>
+    </div>
+
+  </div>
+</div>
+
+
+<div class=" flex flex-row  justify-center">
+
+  <mat-dialog-actions align="center" class="mx-2">
+    <button class="w-full h-10" mat-raised-button color="primary" mat-button cdkFocusInitial (click)="hideseconddiv=!hideseconddiv" >Next or Go back
+    </button>
+  </mat-dialog-actions>
+
+  <mat-dialog-actions align="center" class="mx-2" *ngIf="hideseconddiv">
+    <button class="w-full h-10" mat-raised-button color="warn" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateNumbers()">Finish Selection
+      <span class="bg-white px-1 rounded text-blue-600 text-xs ml-2">{{selectedNumber}}</span>
+    </button>
+
+  </mat-dialog-actions>
+
+
+</div>
+
+</body>
+</html>

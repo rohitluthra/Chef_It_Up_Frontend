@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="navbar mx-6" >
+  <header class="flex justify-between items-center">
+    <img routerLink="" class=" h-16 cursor-pointer" src="../../assets/logo_edited_2.jpeg" alt="">
+    <div class="pt-2 relative mx-auto text-gray-900">
+
+      <form class=" mt-3  flex  flex-row  flex-wrap" (submit)="searchBarRecipe($event)">
+        <input type="text" class=" text-gray-600  w-2/3  p-2  rounded-l-lg border-2 border-blue-600" placeholder="Search a Recipe" id = "searchBarRecipeText"/>
+        <button class=" p-2  w-1/3  bg-blue-600  rounded-r-lg  text-white hover: bg-blue-600 tracking-widest" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="relative z-10">
+      <button tabindex="-1" (click)="dropdownShowOrNot()" class=" relative block h-10 w-10 mx-8">
+        <img class="md:w-1/2 md:h-1/2 lg:w-full lg:h-full object-cover rounded-full overflow-hidden border-2 hover:border-blue-600  hover:shadow-2xl" src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+      </button>
+      <button *ngIf="isOpen" (click)="isOpen=false"  class="fixed top-0 right-0 left-0 bottom-0 h-full w-full bg-white opacity-50 cursor-default"></button>
+      <div  *ngIf="isOpen" class="absolute top-auto right-0 w-48 mt-4 py-2 bg-white rounded-b-lg shadow-2xl" >
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white " href="">Settings</a>
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Support</a>
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Sign out</a>
+      </div>
+    </div>
+
+  </header>
+</div>
+<hr class="border-t-2 border-black m-2">
+<div class="container mx-auto">
+
+  <div class="flex flex-row items-center m-4">
+    <button routerLink="/instructor" class="mx-5" aria-label="Go back to dashboard" data-balloon-pos="left">
+      <mat-icon class=" text-3xl font-extrabold cursor-pointer transition-all transition-ease-out hover:text-orange-500">arrow_back</mat-icon>
+    </button>
+    <div class="font-bold text-2xl pr-4 " *ngIf="teacher.name != null && teacher != undefined">Welcome back, {{teacher.name}} </div>
+    <a routerLink="/newRecipe" class="cursor-pointer bg-orange-600  transition-all transition-ease-out hover:bg-orange-500 font-bold text-white tracking-wide py-2 px-4 rounded items-center rounded-full animated zoomIn">
+      Add Recipe
+    </a>
+  </div>
+
+  <div class="text-center" *ngIf="classs == undefined || classs.recipes == null">
+    <p class=" text-2xl pr-4"> NO RECIPES TO SHOW!</p>
+    <p class=" pr-4">ADD NEW RECIPES BY CLICKING THE <span class="text-orange-500 underline">ADD RECIPE</span> BUTTON ABOVE</p>
+  </div>
+
+  <ul class="ClassList  mx-auto px-20 " *ngIf="classs != null">
+    <li class="classList_Element m-4 animated zoomIn transition-all transition-ease-out hover:shadow-2xl " *ngFor="let rec of displayingRecipeList">
+      <div class="flex items-center bg-yellow-400 rounded" >
+        <div class="hidden md:block lg:w-1/3 pl-4">
+          <img class="rounded " src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_16:9/k%2FPhoto%2FRecipes%2F2019-08-recipe-easiest-20-minute-butter-chicken%2FEasiest-20-Minute-Butter-Chicken_012" alt="">
+        </div>
+        <div class="flex flex-col lg:w-2/3 p-4">
+          <div class="mainHeading font-bold text-3xl">{{rec.name}}</div>
+          <div class="description py-3 tracking-normal">
+            {{rec.description}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequatur cum cupiditate dicta eaque earum esse et excepturi, facere id inventore ipsam iste nostrum perspiciatis praesentium saepe voluptate voluptatem voluptatibus!
+          </div>
+          <div class="actionDiv flex justify-start">
+            <div class="bg-blue-600 hover:bg-blue-800 cursor-pointer transition-all transition-ease-out hover:shadow-2xl rounded-full py-2 px-6 text-white tracking-wider" (click) = editRecipe(rec)>
+              <a class="">Edit</a></div>
+            <div class=" bg-blue-600 hover:bg-blue-800 cursor-pointer transition-all transition-ease-out hover:shadow-2xl rounded-full py-2 px-6 text-white tracking-wider mx-4">
+              <a (click)="deleteRecipe(rec)">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+<app-footer>
+</app-footer>
+</html>

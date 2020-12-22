@@ -1,0 +1,71 @@
+<div class="absolute z-1 ">
+  <video autoplay="true" class="h-screen w-screen bg-gray-900" loop="true" src="../../assets/.student_video.mp4.icloud"></video>
+</div>
+
+<div class="flex flex-row justify-center pt-64 block">
+  <div class="  z-2 opacity-75 student  " *ngIf="user != 'teacher'">
+    <button class="button font-bold" (click)="setAsStudent()" *ngIf="user == ''">
+      Student
+    </button>
+
+
+    <div class="shadow-xl p-10 bg-white max-w-xl  rounded" *ngIf="user == 'student'">
+      <form class="max-w-xl" method="POST" action="#" id = "stform" (submit)="studentLogin($event)">
+        <h1 class="text-4xl font-black mb-4 mx-2">Student Login</h1>
+        <div class="mb-4 relative">
+          <input autofocus
+                 class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+                 id="stemail" type="text">
+          <label class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+                 for="email">Email Address</label>
+        </div>
+        <div class="mb-4 relative">
+          <input autofocus
+                 class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+                 id="stpassword" type="password">
+          <label class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+                 for="password">Password</label>
+        </div>
+        <button class="bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+
+
+    <button class="button font-bold " routerLink="/signup">Sign Up</button>
+  </div>
+
+  <div class="  z-2 opacity-75  instructor block " *ngIf="user != 'student'">
+
+    <button class="button font-bold " (click)="setAsTeacher()" *ngIf="user == ''">
+      Instructor
+    </button>
+
+
+    <div class="shadow-xl p-10 bg-white max-w-xl  rounded" *ngIf="user == 'teacher'">
+      <form class="max-w-xl" method="POST" action="#"  (submit)="teacherLogin($event)">
+        <h1 class="text-4xl font-black mb-4">Instructor Login</h1>
+        <div class="mb-4 relative">
+          <input autofocus
+                 class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+                 id="email" type="text">
+          <label class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+                 for="email">Email Address</label>
+        </div>
+        <div class="mb-4 relative">
+          <input autofocus
+                 class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+                 id="password" type="password">
+          <label class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text"
+                 for="password">Password</label>
+        </div>
+        <button class="bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+</div>

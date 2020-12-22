@@ -1,0 +1,17 @@
+<form id="formNewClass" (submit)="onNewClass($event)">
+  <div class="flex flex-col w-full text-center ">
+    <mat-form-field>
+      <input matInput placeholder="What is name of your class" id="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Class Description" id="description"></textarea>
+    </mat-form-field>
+
+    <button
+      class="cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-orange-100 py-2 px-4 rounded inline-flex items-center rounded-full justify-center"
+    type="submit">
+      Add Class
+    </button>
+  </div>
+</form>

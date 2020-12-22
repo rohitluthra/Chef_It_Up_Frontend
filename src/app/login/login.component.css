@@ -1,0 +1,38 @@
+
+.input {
+  transition: border 0.2s ease-in-out;
+  min-width: 280px
+}
+
+.input:focus+.label,
+.input:active+.label,
+.input.filled+.label {
+  font-size: .75rem;
+  transition: all 0.2s ease-out;
+  top: -0.1rem;
+  color: #1a202c;
+}
+
+.label {
+  transition: all 0.2s ease-out;
+  top: 0.4rem;
+  left: 0;
+}
+
+button {
+  transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  display: block;
+  margin: 24px auto;
+  max-width: 240px;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 20px 30px;
+  color: rgba(118, 81, 66, 1);
+  background: blanchedalmond;
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+button:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+  font-weight: bold;
+}

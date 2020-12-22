@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div class="everything bg-white overflow-hidden" >
+  <div class="navbar mx-4" >
+    <header class="flex justify-between">
+      <div>
+        <div class=" flex items-center">
+          <img routerLink="/stuDash" class=" h-16 cursor-pointer" src="../../assets/logo_edited_2.jpeg" alt="">
+          <h3 class="no-underline hover:underline text-black font-bold text-3xl ml-2 cursor-pointer">Greek Food Recipes</h3>
+        </div>
+      </div>
+      <div class=" flex items-center">
+        <div class="px-2">
+          <circle-progress
+            [percent]="85"
+            [radius]="25"
+            [titleFontSize]="12"
+            [outerStrokeWidth]="4"
+            [innerStrokeWidth]="4"
+            [outerStrokeColor]="'#78C000'"
+            [innerStrokeColor]="'#C7E596'"
+            [animation]="true"
+            [animationDuration]="800"
+            [maxPercent]="100"
+            [showSubtitle]="false"
+          ></circle-progress>
+
+        </div>
+
+        <div class="relative z-10">
+          <button tabindex="-1" (click)="dropdownShowOrNot()" class=" relative z-10 block h-10 w-10 mx-8">
+            <img class="md:w-1/2 md:h-1/2 lg:w-full lg:h-full object-cover rounded-full overflow-hidden border-2 hover:border-blue-600  hover:shadow-2xl" src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+          </button>
+          <button *ngIf="isOpen" (click)="isOpen=false"  class="fixed top-0 right-0 left-0 bottom-0 h-full w-full bg-white opacity-50 cursor-default"></button>
+          <div  *ngIf="isOpen" class="absolute top-auto right-0 w-48 mt-4 py-2 bg-white rounded-b-lg shadow-2xl" >
+            <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white " href="">Settings</a>
+            <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Support</a>
+            <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Sign out</a>
+          </div>
+        </div>
+      </div>
+
+      <!--      </div>-->
+    </header>
+  </div>
+  <hr class="border-t-2 border-black mb-2">
+  <div class="flex m-4">
+    <div class=" w-3/4 colomn_1 mr-4 md:mr-14 hidden sm:flex flex-col justify-center">
+      <div class="flex justify-center items-center row_1 mainarea bg-gray-300 animated fadeInLeft border-8 border-gray-400 ">
+        <div class=" flex flex-row grocery_ul cursor-pointer"
+             cdkDropList (cdkDropListDropped)="drop($event)"
+             [cdkDropListData]="workspaceItems"
+             [cdkDropListConnectedTo]="fruit "
+             #workspace = "cdkDropList">
+          <div class="grocer_ul_li " *ngFor="let item of workspaceItems " cdkDrag >{{item}}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex my-4 bottomarea">
+        <div class=" relative overflow-auto groceries bg-blue-200 w-1/2 mr-2 animated fadeInUp border-8 border-blue-300 " >
+          <div class=" flex flex-row flex-wrap m-2 cursor-pointer "
+               cdkDropList (cdkDropListDropped)="drop($event)"
+               [cdkDropListData]="fruits"
+               [cdkDropListConnectedTo]="workspace"
+               #fruit= "cdkDropList">
+            <div class=" p-2 bg-white m-2 hover:bg-orange-500" *ngFor="let ingredient of recipe?.ingredients " cdkDrag >{{ingredient.name}}
+            </div>
+          </div>
+        </div>
+
+        <div class=" relative bg-blue-200 w-1/2 overflow-scroll  items-center ml-2 animated fadeInUp  border-8 border-blue-400 " >
+          <div class=" flex flex-row flex-wrap m-2 cursor-pointer" >
+            <div class="p-2 bg-white m-2 hover:bg-orange-500" *ngFor="let utensil of recipe?.utensils "  cdkDrag >{{utensil.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class=" specificheight flex colomn_2 overflow-y-auto font-bold text-md  sm:w-1/4 bg-gray-300 pt-4 animated fadeInRight border-8 border-gray-400 ">
+      <div class="fixed w-full px-2" >
+        <mat-accordion *ngFor="let stepp of recipe?.steps">
+          <mat-expansion-panel class=" bg-blue-400">
+            <mat-expansion-panel-header class="bg-blue-400">
+              <mat-panel-title class="">
+                {{stepp}}
+              </mat-panel-title>
+              <mat-panel-description >
+                something
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="flex justify-start items-center">
+            </div>
+          </mat-expansion-panel>
+          <hr class="border-t-2 border-black my-2">
+        </mat-accordion>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

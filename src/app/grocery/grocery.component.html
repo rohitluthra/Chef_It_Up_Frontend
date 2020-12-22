@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<header class="flex justify-around items-center px-4 md:px-16 ">
+  <img class=" w-10 sm:w-20 md:w-40 cursor-pointer" src="../../assets/logo_sharp_image.png" alt="">
+
+  <div class="pt-2 relative mx-auto text-gray-600">
+    <input class="border-2 border-gray-300 bg-white h-7 md:h-10 px-15 sm:pr-24 md:pr-64 rounded-lg text-md focus:outline-none shadow-xl"
+           type="search" name="Search Recipe" placeholder="Search Recipe">
+    <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+      <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"version="1.1" id="Capa_1" x="0px" y="0px"
+           viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+           width="512px" height="512px">
+            <path
+              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+          </svg>
+    </button>
+  </div>
+  <div class="flex mx-3">
+  <button type="submit" class="mx-3 cursor-pointer bg-orange-600 hover:bg-orange-500 shadow-xl px-5 py-2 inline-block text-orange-100 hover:text-white rounded" (click)="showGrocery()">Grocery</button>
+  <button type="submit" class="cursor-pointer bg-orange-600 hover:bg-orange-500 shadow-xl px-5 py-2 inline-block text-orange-100 hover:text-white rounded" (click)="showutensil()">Utensils</button>
+    <img class="ml-4 h-8" src="../../assets/grocery/shopping-cart.svg" alt="">
+  </div>
+  <div class="relative ">
+    <button tabindex="-1" (click)="dropdownShowOrNot()" class=" relative z-10 block h-10 w-10 mx-8">
+      <img class="md:w-1/2 md:h-1/2 lg:w-full lg:h-full object-cover rounded-full overflow-hidden border-2 hover:border-blue-600  hover:shadow-2xl" src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+    </button>
+    <button *ngIf="isOpen" (click)="isOpen=false"  class="fixed top-0 right-0 left-0 bottom-0 h-full w-full bg-white opacity-50 cursor-default"></button>
+    <div  *ngIf="isOpen" class="absolute top-auto right-0 w- 48 mt-4 py-2 bg-white rounded-b-lg shadow-2xl" >
+      <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white " href="">Settings</a>
+      <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Support</a>
+      <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Sign out</a>
+    </div>
+  </div>
+</header>
+<hr>
+<div class="bg-white border-b">
+  <div class="container mx-auto px-4">
+
+    <div *ngIf="grocery" class="flex grocery ">
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/lactose-intolerant.svg" alt="">
+        Dairy
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/apple.svg" alt="">
+        Fruits
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/agronomy.svg" alt="">
+
+        Grains and Beans
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/fish.svg" alt="">
+        Meat
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/candy-wrap.svg" alt="">
+        Confections
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/salad.svg" alt="">
+        Vegetables
+      </a>
+    </div>
+    <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+      <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+        <img class="h-8 mr-2" src="../../assets/grocery/olive-oil.svg" alt="">
+
+        Liquid
+      </a>
+    </div>
+  </div>
+    <div *ngIf="utensil" class="flex grocery ">
+      <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+        <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+          <img class="h-8 mr-2" src="../../assets/grocery/small.svg" alt="">
+          Small
+        </a>
+      </div>
+
+      <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+        <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+          <img class="h-8 mr-2" src="../../assets/grocery/medium.svg" alt="">
+          Medium
+        </a>
+      </div>
+
+      <div class="flex -mb-px mr-8 border-transparent hover:text-blue-600 font-bold">
+        <a class="no-underline flex text-blue-dark items-center py-4 border-b border-blue-dark" href="">
+          <img class="h-8 mr-2" src="../../assets/grocery/large.svg" alt="">
+          Large
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class=" ">
+  <!--______________________________________________________________________________________-->
+
+  <div class="block  md:px-12">
+    <div class="flex flex-wrap lg:mx-4 mt-3">
+      <div class="my-1  w-full md:w-1/3 lg:my-4 lg:w-1/5 hover:shadow-2xl ">
+        <article class="overflow-hidden rounded-lg shadow-lg">
+          <a href="#">
+            <img alt="Placeholder" class="block h-auto w-full" src="https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/246623d990be42b7a60270fc0e188750.jpg">
+          </a>
+          <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+            <h1 class="text-lg">
+              <a class="no-underline hover:underline text-black font-bold" href="#">
+              Tomatos
+              </a>
+            </h1>
+
+            <li class ="inline-block hover:shadow-2xl ">
+              <a href="#"> <img class="h-8"  src="../../assets/grocery/add-to-cart.svg" alt="Add"> </a>
+            </li>
+
+          </header>
+
+        </article>
+
+      </div>
+<!--      <div class="my-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 hover:shadow-2xl">-->
+<!--        <article class="overflow-hidden rounded-lg shadow-lg">-->
+
+<!--          <a href="#">-->
+<!--            <img alt="Placeholder" class="block h-auto w-full" src="http://oivietnam.com/wp-content/uploads/2017/07/Portugal-5.jpg">-->
+<!--          </a>-->
+<!--          <header class="flex items-center justify-between leading-tight p-2 md:p-4">-->
+<!--            <h1 class="text-lg">-->
+<!--              <a class="no-underline hover:underline text-black font-bold" href="#">-->
+<!--                Portugese Food Recipes-->
+<!--              </a>-->
+<!--            </h1>-->
+
+<!--            <li class ="inline-block hover:shadow-2xl ">-->
+<!--              <a href="#"> <img class="h-8"  src="../../assets/instructor_svg/remove.svg" alt="Add"> </a>-->
+<!--            </li>-->
+<!--          </header>-->
+
+<!--        </article>-->
+
+<!--      </div>-->
+<!--      <div class="my-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 hover:shadow-2xl">-->
+<!--        <article class="overflow-hidden rounded-lg shadow-lg">-->
+
+<!--          <a href="#">-->
+<!--            <img alt="Placeholder" class="block h-auto w-full" src="https://www.strongertogether.coop/sites/default/files/Chinese_and_Japanese_Cuisine.jpg">-->
+<!--          </a>-->
+
+<!--          <header class="flex items-center justify-between leading-tight p-2 md:p-4">-->
+<!--            <h1 class="text-lg">-->
+<!--              <a class="no-underline hover:underline text-black font-bold" href="#">-->
+<!--                Japense Food Recipes-->
+<!--              </a>-->
+<!--            </h1>-->
+
+<!--            <li class ="inline-block hover:shadow-2xl ">-->
+<!--              <a href="#"> <img class="h-8"  src="../../assets/instructor_svg/remove.svg" alt="Add"> </a>-->
+<!--            </li>-->
+<!--          </header>-->
+
+<!--        </article>-->
+<!--      </div>-->
+    </div>
+  </div>
+
+</div>
+
+<div class="my-32"></div>
+
+</body>
+<footer>
+  <img class=" " src="https://mondiv.com/wp-content/themes/default-bs3/img/template/bg_footer_all.jpg" alt="">
+</footer>
+
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Zilla+Slab&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+
+</head>
+<body>
+
+<div class="navbar mx-6" >
+  <header class="flex justify-between items-center">
+    <img routerLink="/stuDash" class=" h-16 cursor-pointer" src="../../assets/logo_edited_2.jpeg" alt="">
+    <div class="pt-2 relative mx-auto text-gray-900">
+      <form class=" mt-3  flex  flex-row  flex-wrap">
+        <input type="text" class=" text-gray-600  w-2/3  p-2  rounded-l-lg border-2 border-blue-600" placeholder="Search a Class" id = "searchBarText"/>
+<!--        searchBarRecipeText-->
+        <button class=" p-2  w-1/3  bg-blue-600  rounded-r-lg  text-white hover: bg-blue-600 tracking-widest" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="relative z-10">
+      <button tabindex="-1" (click)="dropdownShowOrNot()" class=" relative block h-10 w-10 mx-8">
+        <img class="md:w-1/2 md:h-1/2 lg:w-full lg:h-full object-cover rounded-full overflow-hidden border-2 hover:border-blue-600  hover:shadow-2xl" src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="">
+      </button>
+      <button *ngIf="isOpen" (click)="isOpen=false"  class="fixed top-0 right-0 left-0 bottom-0 h-full w-full bg-white opacity-50 cursor-default"></button>
+      <div  *ngIf="isOpen" class="absolute top-auto right-0 w-48 mt-4 py-2 bg-white rounded-b-lg shadow-2xl" >
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white " href="">Settings</a>
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Support</a>
+        <a class="block px-8 py-2 hover:bg-indigo-400 hover:text-white" href="">Sign out</a>
+      </div>
+    </div>
+  </header>
+</div>
+<hr class="border-t-2 border-black m-2">
+
+<div class="container mx-auto">
+  <button routerLink="/stuDash" class="ml-5" aria-label="Go back to dashboard" data-balloon-pos="right"><mat-icon class=" text-3xl font-extrabold cursor-pointer transition-all transition-ease-out hover:text-orange-500">arrow_back</mat-icon>
+  </button>
+  <div class="flex flex-wrap " >
+    <div class="my-1 w-full md:w-1/3 md:p-3" *ngFor="let rec of clas.recipes">
+      <div class="overflow-hidden rounded-lg shadow-lg transition-all transition-ease-out hover:shadow-2xl animated fadeIn">
+
+        <img alt="Placeholder" class="block h-auto w-full cursor-pointer "
+             src="http://cdn.cnn.com/cnnnext/dam/assets/190624122444-15-best-greek-food-restricted.jpg"
+             (click)="cookRecipe(rec)">
+
+        <div class="flex items-center justify-between leading-tight p-2 md:p-4">
+          <h1 class="text-lg">
+            <a class="no-underline hover:underline text-black font-bold cursor-pointer hover:text-orange-600" (click)="cookRecipe(rec)">
+              {{rec.name}}
+            </a>
+          </h1>
+
+          <a>
+            <mat-icon class=" text-3xl font-extrabold cursor-pointer transition-all transition-ease-out hover:text-red-600">delete</mat-icon>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="my-32"></div>
+
+</body>
+<app-footer></app-footer>
+
+
+</html>

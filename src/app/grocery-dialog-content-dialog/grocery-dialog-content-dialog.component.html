@@ -1,0 +1,94 @@
+<!--<h2 mat-dialog-title></h2>-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+
+  <title>Document</title>
+</head>
+<body>
+
+<h1 class="text-4xl text-center font-bold">Ingredients</h1>
+<h2 class="text-xs text-center">Select the ingredients of your original recipe.</h2>
+<hr class="border-t-2 border-black m-2">
+
+<div class="flex flex-row justify-center items-center">
+
+  <mat-dialog-content class="flex mat-typography w-full " *ngIf="!hideseconddiv">
+    <mat-form-field class="w-full p-4">
+      <input matInput type="text" placeholder="Search for specific food" [(ngModel)]="value">
+    </mat-form-field>
+    <div class="flex flex-wrap flex-row m-2">
+      <div *ngFor="let ingredient of allIngredients"  class=" ">
+        <button  (click)="selectedIngre(ingredient)" class="text-gray-700 transition-all transition-ease-out hover:bg-orange-500 text-center bg-gray-400 px-4 py-2 m-2 text-black font-bold capitalize text-lg">
+          {{ingredient.name}}
+        </button>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+
+    <div  id="itemlist" *ngIf="hideseconddiv" class="flex flex-col w-full items-center justify-center overflow-y-auto content-center p-2 m-2  border-2 border-black ">
+      <h1 class="text-2xl font-bold">Selected Items: </h1>
+      <div [attr.id]="'ingredient'+ i" *ngFor="let ingredient of ingredientsSelected; let i=index" class=" flex flex-row m-2 justify-between items-end hover:cursor-pointer transition-all transition-ease-out animated fadeIn">
+        <mat-form-field class="w-1/5 h-10">
+          <input  type ="number" min="0" matInput placeholder="Quantity" >
+        </mat-form-field>
+
+        <mat-form-field class="w-1/5 mx-2 h-10">
+          <mat-label>Type</mat-label>
+          <mat-select #fontSize value="8px">
+            <mat-option value="Cup">Cup</mat-option>
+            <mat-option value="Dashes">Dashes</mat-option>
+            <mat-option value="Pinches">Pinches</mat-option>
+            <mat-option value="Tablespoon">Tablespoon</mat-option>
+            <mat-option value="Teaspoon">Teaspoon</mat-option>
+            <mat-option value="Pounds">Pounds</mat-option>
+            <mat-option value="Kilogram">Kilogram</mat-option>
+            <mat-option value="Cups">Cups</mat-option>
+            <mat-option value="Drops">Drops</mat-option>
+            <mat-option value="Gallon">Gallon</mat-option>
+            <mat-option value="Ounces">Ounces</mat-option>
+            <mat-option value="Pints">Pints</mat-option>
+            <mat-option value="Quarts">Quarts</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-3/5 mr-2 h-10" >
+          <input type ="text" matInput placeholder="Ingredient" value="{{ingredient.name}}" >
+        </mat-form-field>
+        <mat-icon (click)="deleteSpecificIngredient(i)" class="hover:bg-red-500 rounded-lg cursor-pointer" >delete</mat-icon>
+
+      </div>
+<!--      <hr class="border-t-2 border-black m-2 w-full">-->
+
+      <div class="flex  justify-center text-sm font-bold m-4" *ngIf="hideseconddiv">
+        <a  class="hover-title text-blue-600 underline cursor-pointer mx-2 " >Measuring Portion Size Info </a>
+        <a  class="hover-title1 text-blue-600 underline cursor-pointer mx-2 " >Estimating Portion Size Info </a>
+      </div>
+  </div>
+</div>
+
+
+<div class=" flex flex-row  justify-center">
+
+  <mat-dialog-actions align="center" class="mx-2">
+    <button class="w-full h-10" mat-raised-button color="primary" mat-button cdkFocusInitial (click)="hideseconddiv=!hideseconddiv" >Next or Go back
+    </button>
+  </mat-dialog-actions>
+
+  <mat-dialog-actions align="center" class="mx-2" *ngIf="hideseconddiv">
+    <button class="w-full h-10" mat-raised-button color="warn" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateNumbers()">Finish Selection
+      <span class="bg-white px-1 rounded text-blue-600 text-xs ml-2">{{selectedNumber}}</span>
+    </button>
+
+  </mat-dialog-actions>
+
+
+</div>
+
+</body>
+</html>

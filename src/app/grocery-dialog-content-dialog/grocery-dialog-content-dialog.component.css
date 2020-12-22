@@ -1,0 +1,22 @@
+
+.hover-title:hover:after {
+  content: url(/assets/newrecipe/info_1.png); /* no need for qoutes */
+  display: block;
+  z-index: 20;
+  position: fixed;
+  left: 300px; /* change this value to one that suits you */
+  top: 128px; /* change this value to one that suits you */
+}
+
+.hover-title1:hover:after {
+  content: url(/assets/newrecipe/info_2.png); /* no need for qoutes */
+  display: block;
+  z-index: 20;
+  position: fixed;
+  left: 300px; /* change this value to one that suits you */
+  top: 128px; /* change this value to one that suits you */
+}
+.demo-navigation .mdl-navigation__link:hover .material-icons {
+  background-color: red;
+  color: red; ;
+}
